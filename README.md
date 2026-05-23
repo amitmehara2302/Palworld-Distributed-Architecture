@@ -60,18 +60,6 @@ Instead of traditional router port-forwarding, this project uses Playit.gg UDP t
 - Stable low-latency multiplayer connectivity
 - Faster onboarding for friends joining the server
 
-# 🌐 Networking Strategy
-
-Instead of traditional router port-forwarding, this project uses Playit.gg UDP tunneling to expose the locally hosted Palworld server over the internet.
-
-## Benefits
-
-- No router configuration required
-- Works behind CGNAT
-- Easier setup for non-technical users
-- Stable low-latency multiplayer connectivity
-- Faster onboarding for friends joining the server
-
 # 🔄 System Workflow
 
 ```text
