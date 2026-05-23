@@ -1,0 +1,30 @@
+services:
+  # 🛠️ STRATEGY 1: The Locksmith Bot (Fixes permissions and deletes itself)
+  permission-fixer:
+    image: alpine
+    container_name: permission-bot
+    volumes:
+      - palworld_data:/pal/Package/Pal/Saved
+    command: sh -c "chown -R 1000:1000 /pal/Package/Pal/Saved && chmod -R 777 /pal/Package/Pal/Saved"
+
+  # 🎮 STRATEGY 2: The Game Engine
+  palworld-server:
+    image: ghcr.io/pocketpairjp/palserver:latest
+    container_name: palworld-squad
+    restart: unless-stopped
+    depends_on:
+      permission-fixer:
+        condition: service_completed_successfully
+    ports:
+      - "8211:8211/udp"
+    environment:
+      - TZ=Asia/Kolkata
+      # 🔒 Injects password from .env silently
+      - ServerPassword=${SERVER_PASSWORD}
+    stop_grace_period: 1m
+    volumes:
+      - palworld_data:/pal/Package/Pal/Saved
+
+volumes:
+  palworld_data:
+    name: palworld_data
