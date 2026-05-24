@@ -44,7 +44,7 @@ function Write-Log([string]$Message) {
 function Run-PreFlightChecks {
     $dockerCheck = docker info 2>&1
     if ($LASTEXITCODE -ne 0) {
-        [System.Windows.Forms.MessageBox]::Show("Arey vedya! Docker Desktop is not running. Please start Docker first.", "Pre-Flight Error", 0, 16)
+        [System.Windows.Forms.MessageBox]::Show("Docker Desktop is not running. Please start Docker first.", "Pre-Flight Error", 0, 16)
         exit
     }
     $cloudFolder = $global:EnvVars["SHARED_CLOUD_FOLDER"]
